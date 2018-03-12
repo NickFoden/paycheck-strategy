@@ -1,0 +1,14 @@
+#contact-div {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10%;
+  margin-top: 100px;
+  text-align: center;
+  width: 99%;
+}
+
+#features-div {
+  text-align: left;
+  width: 60%;
+  margin: auto;
+}
