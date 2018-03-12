@@ -2,7 +2,7 @@
   "name": "paycheck-strat",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nickfoden.github.io/paycheck-strat/",
+  "homepage": "https://nickfoden.github.io/paycheck-strategy/",
   "dependencies": {
     "moment": "^2.21.0",
     "react": "^16.2.0",

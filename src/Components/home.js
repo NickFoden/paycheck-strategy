@@ -51,12 +51,16 @@ class Home extends Component {
     let number = (this.state.purchaseCost / this.state.paymentAmount).toFixed(
       2
     );
-    this.setState({ resultPayments: number });
-    let finalDate = moment(this.state.payDay)
-      .add(14 * number, "day")
-      .format("LLL");
-    console.log(finalDate);
-    this.setState({ resultDate: finalDate });
+    this.setState({ resultPayments: Math.ceil(number) });
+    if (number === 1) {
+      let finalDate = moment(this.state.payDay);
+      this.setState({ resultDate: finalDate });
+    } else {
+      let finalDate = moment(this.state.payDay)
+        .add(14 * (number - 1), "day")
+        .format("LLL");
+      this.setState({ resultDate: finalDate });
+    }
   }
 
   render() {

@@ -1,4 +1,4 @@
-## Paycheck Strat
+## Paycheck Strategy
 
 ### Plan your paychecks to knock out payments
 
