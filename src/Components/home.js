@@ -10,7 +10,7 @@ class Home extends Component {
     super();
     this.state = {
       startDate: "",
-      payDay: "When is next pay day ?",
+      payDay: "When is next pay day ? And we assume you get paid every 2 weeks",
       payOffDay: "Let's get rid of this bill",
       payDayFocused: false,
       payOffFocused: false,
@@ -68,12 +68,12 @@ class Home extends Component {
       moment(this.state.payDay).format("MMM Do YY") === "Invalid date"
         ? this.state.payDay
         : moment(this.state.payDay).format("MMM Do YY");
-    // const payDayDate = JSON.stringify(this.state.payDay);
-    const payOffDate =
-      moment(this.state.payOffDay).format("MMM Do YY") === "Invalid date"
-        ? this.state.payOffDay
-        : moment(this.state.payOffDay).format("MMM Do YY");
-    // const payOffDate = JSON.stringify(this.state.payOffDay);
+
+    // const payOffDate =
+    //   moment(this.state.payOffDay).format("MMM Do YY") === "Invalid date"
+    //     ? this.state.payOffDay
+    //     : moment(this.state.payOffDay).format("MMM Do YY");
+
     const resultDate =
       moment(this.state.resultDate).format("MMM Do YY") === "Invalid date"
         ? this.state.resultDate
@@ -89,22 +89,28 @@ class Home extends Component {
               id="date_input"
               date={date}
               focused={this.state.payDayFocused}
-              // onDateChange={date => console.log(JSON.stringify(date) + " date")}
               onDateChange={date => this.setState({ payDay: date })}
               onFocusChange={() =>
                 this.setState({ payDayFocused: !this.state.payDayFocused })
               }
             />
-            <h2>Lets assume you get paid every 2 weeks?</h2>
+            {/* <h2>Lets assume you get paid every 2 weeks?</h2>
             <input type="radio" id="radioButton" />
             <label htmlFor="radioButton">
               <h3>Yes</h3>
-            </label>
-
-            <h3>
-              In {this.state.resultPayments} paychecks from now, on the day of{" "}
-              {resultDate} you will be free of your burden
-            </h3>
+            </label> */}
+            {resultDate ? (
+              <h3>
+                In {this.state.resultPayments} paycheck{this.state
+                  .resultPayments > 1
+                  ? "s"
+                  : ""}{" "}
+                from now, on the day of {resultDate} you will be free of your
+                burden
+              </h3>
+            ) : (
+              ""
+            )}
           </div>
           <div className="purchase">
             <h2>Purchase Cost</h2>
@@ -118,7 +124,7 @@ class Home extends Component {
                 onChange={this.handleChange}
               />
             </form>
-            <h2>Pay off by date</h2>
+            {/* <h2>Pay off by date</h2>
             <h3>{payOffDate}</h3>
             <SingleDatePicker
               id="date_input"
@@ -128,7 +134,7 @@ class Home extends Component {
               onFocusChange={() =>
                 this.setState({ payOffFocused: !this.state.payOffFocused })
               }
-            />
+            /> */}
             <h2>Per Check Payment</h2>
             <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
             <form id="payment-amount-form" onSubmit={this.handlePaySubmit}>

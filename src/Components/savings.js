@@ -69,7 +69,6 @@ class Savings extends Component {
       moment(this.state.payDay).format("MMM Do YY") === "Invalid date"
         ? this.state.payDay
         : moment(this.state.payDay).format("MMM Do YY");
-    // const payDayDate = JSON.stringify(this.state.payDay);
     const resultDate =
       moment(this.state.resultDate).format("MMM Do YY") === "Invalid date"
         ? this.state.resultDate
@@ -85,7 +84,6 @@ class Savings extends Component {
               id="date_input"
               date={date}
               focused={this.state.payDayFocused}
-              // onDateChange={date => console.log(JSON.stringify(date) + " date")}
               onDateChange={date => this.setState({ payDay: date })}
               onFocusChange={() =>
                 this.setState({ payDayFocused: !this.state.payDayFocused })
@@ -96,12 +94,18 @@ class Savings extends Component {
             <label htmlFor="radioButton">
               <h3>Yes</h3>
             </label> */}
-
-            <h3>
-              In {this.state.resultPayments} paychecks from now, on the day of{" "}
-              {resultDate} you will have reached your goal of ${" "}
-              {this.state.savingsAmount}
-            </h3>
+            {resultDate ? (
+              <h3>
+                In {this.state.resultPayments} paycheck{this.state
+                  .resultPayments > 1
+                  ? "s"
+                  : ""}{" "}
+                from now, on the day of {resultDate} you will have reached your
+                goal of $ {this.state.savingsAmount}
+              </h3>
+            ) : (
+              ""
+            )}
           </div>
           <div className="savings">
             <h2>Savings Goal Amount</h2>
