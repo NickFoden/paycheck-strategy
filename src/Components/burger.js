@@ -23,8 +23,8 @@ class Burger extends Component {
           <a id="savings" className="menu-item" href="/savings">
             Savings
           </a>
-          <a id="contact" className="menu-item" href="/contact">
-            Contact
+          <a id="future" className="menu-item" href="/future">
+            Future
           </a>
         </Menu>
       </div>

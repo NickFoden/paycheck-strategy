@@ -10,7 +10,7 @@ class Home extends Component {
     super();
     this.state = {
       startDate: "",
-      payDay: "When is next pay day ? And we assume you get paid every 2 weeks",
+      payDay: "When is next pay day ?",
       payOffDay: "Let's get rid of this bill",
       payDayFocused: false,
       payOffFocused: false,
@@ -82,8 +82,9 @@ class Home extends Component {
     return (
       <div className="App">
         <h1>Pay off expense date projector </h1>
+        <h4>( Currently assumes you get paid biweekly)</h4>
         <div className="app-body">
-          <div className="paycheck">
+          <div>
             <h2>Paycheck Date</h2>
             <h3>{payDayDate}</h3>
             <SingleDatePicker
@@ -100,20 +101,8 @@ class Home extends Component {
             <label htmlFor="radioButton">
               <h3>Yes</h3>
             </label> */}
-            {resultDate ? (
-              <h3>
-                In {this.state.resultPayments} paycheck{this.state
-                  .resultPayments > 1
-                  ? "s"
-                  : ""}{" "}
-                from now, on the day of {resultDate} you will be free of your
-                burden
-              </h3>
-            ) : (
-              ""
-            )}
           </div>
-          <div className="purchase">
+          <div>
             <h2>Purchase Cost</h2>
             <h3>${JSON.stringify(this.state.purchaseCost)}</h3>
             <form id="purchase-cost-form" onSubmit={this.handleCostSubmit}>
@@ -136,6 +125,8 @@ class Home extends Component {
                 this.setState({ payOffFocused: !this.state.payOffFocused })
               }
             /> */}
+          </div>
+          <div>
             <h2>Per Check Payment</h2>
             <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
             <form id="payment-amount-form" onSubmit={this.handlePaySubmit}>
@@ -147,10 +138,23 @@ class Home extends Component {
               />
             </form>
           </div>
+        </div>
+        <div className="result-div">
           <button id="compute" onClick={this.compute}>
             Compute
           </button>
-          {/*} <p>{result}</p>*/}
+          {resultDate ? (
+            <h3>
+              In {this.state.resultPayments} paycheck{this.state
+                .resultPayments > 1
+                ? "s"
+                : ""}{" "}
+              from now, on the day of {resultDate} you will be free of your
+              burden
+            </h3>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

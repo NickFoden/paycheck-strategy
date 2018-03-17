@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./Components/home";
 import Savings from "./Components/savings";
 import Burger from "./Components/burger";
-import Contact from "./Components/contact";
+import Future from "./Components/future";
 
 class App extends Component {
   componentDidMount() {}
@@ -18,7 +18,7 @@ class App extends Component {
           <Burger />
           <Route exact path="/" component={Home} />
           <Route exact path="/Savings" component={Savings} />
-          <Route exact path="/Contact" component={Contact} />
+          <Route exact path="/Future" component={Future} />
         </div>
       </BrowserRouter>
     );

@@ -10,7 +10,7 @@ class Savings extends Component {
     super();
     this.state = {
       startDate: "",
-      payDay: "When is next pay day ? And we assume you get paid every 2 weeks",
+      payDay: "When is next pay day ?",
       payOffDay: "Let's get rid of this bill",
       payDayFocused: false,
       payOffFocused: false,
@@ -77,6 +77,7 @@ class Savings extends Component {
     return (
       <div className="App">
         <h1>Savings date projector </h1>
+        <h4>( Currently assumes you get paid biweekly)</h4>
         <div className="app-body">
           <div className="paycheck">
             <h2>Paycheck Date</h2>
@@ -95,18 +96,6 @@ class Savings extends Component {
             <label htmlFor="radioButton">
               <h3>Yes</h3>
             </label> */}
-            {resultDate ? (
-              <h3>
-                In {this.state.resultPayments} paycheck{this.state
-                  .resultPayments > 1
-                  ? "s"
-                  : ""}{" "}
-                from now, on the day of {resultDate} you will have reached your
-                goal of $ {this.state.savingsAmount}
-              </h3>
-            ) : (
-              ""
-            )}
           </div>
           <div className="savings">
             <h2>Savings Goal Amount</h2>
@@ -122,6 +111,8 @@ class Savings extends Component {
                 onChange={this.handleChange}
               />
             </form>
+          </div>
+          <div>
             <h2>Per Check Payment</h2>
             <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
             <form id="payment-amount-form" onSubmit={this.handlePaySubmit}>
@@ -133,10 +124,23 @@ class Savings extends Component {
               />
             </form>
           </div>
+        </div>
+        <div className="result-div">
           <button id="compute" onClick={this.compute}>
             Compute
           </button>
-          {/*} <p>{result}</p>*/}
+          {resultDate ? (
+            <h3>
+              In {this.state.resultPayments} paycheck{this.state
+                .resultPayments > 1
+                ? "s"
+                : ""}{" "}
+              from now, on the day of {resultDate} you will have reached your
+              goal of $ {this.state.savingsAmount}
+            </h3>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );

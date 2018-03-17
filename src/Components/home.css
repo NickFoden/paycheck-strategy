@@ -4,7 +4,7 @@
   --gray: #808080;
   --lightBlue: #4dd2ff;
   --lightGray: #d1d4db;
-  --orange: #ed701a;
+  --orange: #ffa500;
   --white: #ffffff;
 }
 
@@ -13,7 +13,7 @@
 }
 .app-body {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 15px;
   padding: 0 250px;
   font-family: "Noto Sans", sans-serif;
@@ -34,6 +34,9 @@
   font-size: large;
 }
 
+.result-div {
+  margin-top: 50px;
+}
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;

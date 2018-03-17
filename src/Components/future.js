@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import "./contact.css";
+import "./future.css";
 
-class Contact extends Component {
+class Future extends Component {
   //   constructor() {
   //     super();
   //   }
 
   render() {
     return (
-      <div id="contact-div">
+      <div id="future div">
         <h3>
           {" "}
           Thank you for checking out this rough draft of one of my side
@@ -57,4 +57,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default Future;
