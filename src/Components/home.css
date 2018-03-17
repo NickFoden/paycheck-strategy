@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 15px;
-  padding: 0 250px;
+  padding: 0 10%;
   font-family: "Noto Sans", sans-serif;
 }
 
