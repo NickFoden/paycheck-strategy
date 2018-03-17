@@ -76,6 +76,7 @@ class Savings extends Component {
 
     return (
       <div className="App">
+        <h1>Savings date projector </h1>
         <div className="app-body">
           <div className="paycheck">
             <h2>Paycheck Date</h2>

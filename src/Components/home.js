@@ -81,6 +81,7 @@ class Home extends Component {
 
     return (
       <div className="App">
+        <h1>Pay off expense date projector </h1>
         <div className="app-body">
           <div className="paycheck">
             <h2>Paycheck Date</h2>
