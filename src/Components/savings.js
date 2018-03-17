@@ -49,7 +49,10 @@ class Savings extends Component {
 
   compute() {
     let number = Math.ceil(
-      (this.state.savingsAmount / this.state.paymentAmount).toFixed(2)
+      (
+        parseInt(this.state.savingsAmount.replace(/[^0-9.]/g, ""), 10) /
+        parseInt(this.state.paymentAmount.replace(/[^0-9.]/g, ""), 10)
+      ).toFixed(2)
     );
 
     this.setState({ resultPayments: number });

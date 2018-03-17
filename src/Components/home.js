@@ -48,9 +48,10 @@ class Home extends Component {
   }
 
   compute() {
-    let number = (this.state.purchaseCost / this.state.paymentAmount).toFixed(
-      2
-    );
+    let number = (
+      parseInt(this.state.purchaseCost.replace(/[^0-9.]/g, ""), 10) /
+      parseInt(this.state.paymentAmount.replace(/[^0-9.]/g, ""), 10)
+    ).toFixed(2);
     this.setState({ resultPayments: Math.ceil(number) });
     if (number === 1) {
       let finalDate = moment(this.state.payDay);
