@@ -12,7 +12,7 @@ class Burger extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Paycheck Strat</h1>
+          <h1 className="App-title">Paycheck Strategy</h1>
         </header>
         {/*https://github.com/negomi/react-burger-menu */}
 
