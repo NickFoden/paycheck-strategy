@@ -9,7 +9,7 @@ class Future extends Component {
   render() {
     return (
       <div id="future div">
-        <h3>
+        <h3 className="blurbs">
           {" "}
           Thank you for checking out this rough draft of one of my side
           projects!
@@ -39,7 +39,7 @@ class Future extends Component {
             </li>
           </ol>
         </div>
-        <h4>
+        <h4 className="blurbs">
           You can{" "}
           <a
             href="https://twitter.com/NickFoden"
