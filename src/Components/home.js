@@ -19,6 +19,7 @@ class Home extends Component {
       resultDate: "",
       resultPayments: 0
     };
+    this.paymentAmountRef = React.createRef();
     this.compute = this.compute.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCostSubmit = this.handleCostSubmit.bind(this);
@@ -48,19 +49,31 @@ class Home extends Component {
   }
 
   compute() {
-    let number = (
-      parseInt(this.state.purchaseCost.replace(/[^0-9.]/g, ""), 10) /
-      parseInt(this.state.paymentAmount.replace(/[^0-9.]/g, ""), 10)
-    ).toFixed(2);
-    this.setState({ resultPayments: Math.ceil(number) });
-    if (number === 1) {
-      let finalDate = moment(this.state.payDayDate);
-      this.setState({ resultDate: finalDate });
-    } else {
-      let finalDate = moment(this.state.payDayDate)
-        .add(14 * (number - 1), "day")
-        .format("LLL");
-      this.setState({ resultDate: finalDate });
+    if (
+      this.state.purchaseCost &&
+      this.state.paymentAmount &&
+      this.state.payDayDate
+    ) {
+      let number = (
+        parseInt(this.state.purchaseCost.replace(/[^0-9.]/g, ""), 10) /
+        parseInt(this.state.paymentAmount.replace(/[^0-9.]/g, ""), 10)
+      ).toFixed(2);
+      this.setState({ resultPayments: Math.ceil(number) });
+      if (number === 1) {
+        let finalDate = moment(this.state.payDayDate);
+        this.setState({ resultDate: finalDate });
+      } else {
+        let finalDate = moment(this.state.payDayDate)
+          .add(14 * (number - 1), "day")
+          .format("LLL");
+        this.setState({ resultDate: finalDate });
+      }
+    } else if (this.state.payDayDate === null) {
+      this.setState({ payDayFocused: true });
+    } else if (this.state.paymentAmount === "") {
+      this.paymentAmountRef.current.focusTextInput();
+    } else if (this.state.purchaseCost === "") {
+      document.getElementById("purchase-cost").focus();
     }
   }
 
@@ -120,6 +133,7 @@ class Home extends Component {
             <h2>Per Check Payment</h2>
             <form id="payment-amount-form" onSubmit={this.handlePaySubmit}>
               <input
+                ref={this.paymentAmountRef}
                 type="text"
                 id="payment-cost"
                 value={this.state.paymentAmount}

@@ -6,7 +6,6 @@
     "moment": "^2.23.0",
     "navi": "^0.9.2",
     "react": "^16.7.0",
-    "react-addons-shallow-compare": "^15.6.2",
     "react-burger-menu": "^2.5.4",
     "react-dates": "^16.7.1",
     "react-dom": "^16.7.0",
@@ -16,15 +15,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && navi-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "gh-pages": "^2.0.1"
-  },
+  "devDependencies": {},
   "browserslist": [
     ">0.2%",
     "not dead",
