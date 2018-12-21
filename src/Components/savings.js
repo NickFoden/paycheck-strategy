@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { date, SingleDatePicker } from "react-dates";
+import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 
 class Savings extends Component {
@@ -68,10 +68,6 @@ class Savings extends Component {
   }
 
   render() {
-    const payDayDate =
-      moment(this.state.payDay).format("MMM Do YY") === "Invalid date"
-        ? this.state.payDay
-        : moment(this.state.payDay).format("MMM Do YY");
     const resultDate =
       moment(this.state.resultDate).format("MMM Do YY") === "Invalid date"
         ? this.state.resultDate
@@ -84,7 +80,6 @@ class Savings extends Component {
         <div className="app-body">
           <div className="paycheck">
             <h2>Paycheck Date</h2>
-            <h3>{payDayDate}</h3>
             <SingleDatePicker
               id="date_input"
               date={this.state.payDayDate}
