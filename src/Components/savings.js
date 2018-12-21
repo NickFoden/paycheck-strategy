@@ -97,7 +97,6 @@ class Savings extends Component {
           </div>
           <div className="savings">
             <h2>Savings Goal Amount</h2>
-            <h3>${JSON.stringify(this.state.savingsAmount)}</h3>
             <form
               id="savings-amount-form"
               onSubmit={this.handleSavingsAmountSubmit}
@@ -109,10 +108,10 @@ class Savings extends Component {
                 onChange={this.handleChange}
               />
             </form>
+            <h3>${JSON.stringify(this.state.savingsAmount)}</h3>
           </div>
           <div>
             <h2>Per Check Payment</h2>
-            <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
             <form id="payment-amount-form" onSubmit={this.handlePaySubmit}>
               <input
                 type="text"
@@ -121,6 +120,7 @@ class Savings extends Component {
                 onChange={this.handlePayChange}
               />
             </form>
+            <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
           </div>
         </div>
         <div className="result-div">
