@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./future.css";
 
 class Future extends Component {
   //   constructor() {

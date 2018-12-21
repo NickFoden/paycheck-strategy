@@ -3,7 +3,6 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { date, SingleDatePicker } from "react-dates";
 import moment from "moment";
-import "./home.css";
 
 class Home extends Component {
   constructor() {
@@ -146,12 +145,9 @@ class Home extends Component {
           </button>
           {resultDate ? (
             <h3>
-              In {this.state.resultPayments} paycheck{this.state
-                .resultPayments > 1
-                ? "s"
-                : ""}{" "}
-              from now, on the day of {resultDate} you will be free of your
-              burden
+              In {this.state.resultPayments} paycheck
+              {this.state.resultPayments > 1 ? "s" : ""} from now, on the day of{" "}
+              {resultDate} you will be free of your burden
             </h3>
           ) : (
             ""

@@ -3,7 +3,6 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { date, SingleDatePicker } from "react-dates";
 import moment from "moment";
-import "./home.css";
 
 class Savings extends Component {
   constructor() {
@@ -12,6 +11,7 @@ class Savings extends Component {
       startDate: "",
       payDay: "When is next pay day ?",
       payOffDay: "Let's get rid of this bill",
+      payDayDate: null,
       payDayFocused: false,
       payOffFocused: false,
       savingsAmount: 0,
@@ -57,10 +57,10 @@ class Savings extends Component {
 
     this.setState({ resultPayments: number });
     if (number === 1) {
-      let finalDate = moment(this.state.payDay);
+      let finalDate = moment(this.state.payDayDate);
       this.setState({ resultDate: finalDate });
     } else {
-      let finalDate = moment(this.state.payDay)
+      let finalDate = moment(this.state.payDayDate)
         .add(14 * (number - 1), "day")
         .format("LLL");
       this.setState({ resultDate: finalDate });
@@ -87,9 +87,9 @@ class Savings extends Component {
             <h3>{payDayDate}</h3>
             <SingleDatePicker
               id="date_input"
-              date={date}
+              date={this.state.payDayDate}
               focused={this.state.payDayFocused}
-              onDateChange={date => this.setState({ payDay: date })}
+              onDateChange={date => this.setState({ payDayDate: date })}
               onFocusChange={() =>
                 this.setState({ payDayFocused: !this.state.payDayFocused })
               }
@@ -134,12 +134,10 @@ class Savings extends Component {
           </button>
           {resultDate ? (
             <h3>
-              In {this.state.resultPayments} paycheck{this.state
-                .resultPayments > 1
-                ? "s"
-                : ""}{" "}
-              from now, on the day of {resultDate} you will have reached your
-              goal of $ {this.state.savingsAmount}
+              In {this.state.resultPayments} paycheck
+              {this.state.resultPayments > 1 ? "s" : ""} from now, on the day of{" "}
+              {resultDate} you will have reached your goal of ${" "}
+              {this.state.savingsAmount}
             </h3>
           ) : (
             ""

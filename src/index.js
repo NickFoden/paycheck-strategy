@@ -2,8 +2,8 @@ import * as Navi from "navi";
 import React from "react";
 import ReactDOM from "react-dom";
 import pages from "./pages";
-import "./index.css";
 import App from "./App";
+import "./styles.css";
 
 Navi.app({
   pages,

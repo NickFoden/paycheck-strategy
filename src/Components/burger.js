@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-navi";
 import { slide as Menu } from "react-burger-menu";
-import "./menu.css";
 
 class Burger extends Component {
   componentDidMount() {}

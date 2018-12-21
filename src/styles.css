@@ -7,7 +7,13 @@
   --orange: #ffa500;
   --white: #ffffff;
 }
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Noto Sans', sans-serif; */
 
+* {
+  font-family: "Montserrat", sans-serif;
+}
 .App {
   text-align: center;
 }
@@ -16,7 +22,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 15px;
   padding: 0 10%;
-  font-family: "Noto Sans", sans-serif;
 }
 
 .App-header {
@@ -25,7 +30,6 @@
   padding: 20px;
   color: var(--black);
 }
-
 .App-title {
   font-size: 1.5em;
 }
@@ -87,7 +91,6 @@
 }
 
 .menu-item {
-  font-family: "Noto Sans", sans-serif;
   font-size: 2em;
   color: var(--black);
   text-decoration: none;
@@ -114,4 +117,87 @@
 #compute:hover {
   background-color: var(--orange);
   border: 2px solid var(--lightBlue);
+}
+
+#future-div {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10%;
+  margin-top: 100px;
+  text-align: center;
+  width: 99%;
+}
+
+#features-div {
+  text-align: left;
+  width: 60%;
+  margin: auto;
+}
+
+.blurbs {
+  margin-left: 10%;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: var(--black);
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 100px;
+  width: 100px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  display: none;
+  background: var(--black);
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: var(--lightGray);
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: var(--white);
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: var(--white);
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-item {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 2em;
+  color: var(--black);
+  text-decoration: none;
+  padding: 40px;
+}
+
+.menu-item:hover {
+  background-color: var(--lightBlue);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 20px;
 }

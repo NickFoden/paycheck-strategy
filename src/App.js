@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { NavProvider, NavRoute, NavNotFoundBoundary } from "react-navi";
-import "./App.css";
 import Burger from "./Components/burger";
 
 class App extends Component {
