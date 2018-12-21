@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { NavLink } from "react-navi";
 import { slide as Menu } from "react-burger-menu";
-import "./menu.css";
 
 class Burger extends Component {
   componentDidMount() {}
@@ -17,15 +16,15 @@ class Burger extends Component {
         {/*https://github.com/negomi/react-burger-menu */}
 
         <Menu>
-          <a id="home" className="menu-item" href="/">
+          <NavLink id="home" className="menu-item" href="/">
             Home
-          </a>
-          <a id="savings" className="menu-item" href="/savings">
+          </NavLink>
+          <NavLink id="savings" className="menu-item" href="/Savings">
             Savings
-          </a>
-          <a id="future" className="menu-item" href="/future">
+          </NavLink>
+          <NavLink id="future" className="menu-item" href="/Future">
             Future
-          </a>
+          </NavLink>
         </Menu>
       </div>
     );

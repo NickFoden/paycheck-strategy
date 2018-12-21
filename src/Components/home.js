@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { date, SingleDatePicker } from "react-dates";
+import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-import "./home.css";
 
 class Home extends Component {
   constructor() {
@@ -12,6 +11,7 @@ class Home extends Component {
       startDate: "",
       payDay: "When is next pay day ?",
       payOffDay: "Let's get rid of this bill",
+      payDayDate: null,
       payDayFocused: false,
       payOffFocused: false,
       purchaseCost: 0,
@@ -19,6 +19,7 @@ class Home extends Component {
       resultDate: "",
       resultPayments: 0
     };
+    this.paymentAmountRef = React.createRef();
     this.compute = this.compute.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleCostSubmit = this.handleCostSubmit.bind(this);
@@ -48,33 +49,35 @@ class Home extends Component {
   }
 
   compute() {
-    let number = (
-      parseInt(this.state.purchaseCost.replace(/[^0-9.]/g, ""), 10) /
-      parseInt(this.state.paymentAmount.replace(/[^0-9.]/g, ""), 10)
-    ).toFixed(2);
-    this.setState({ resultPayments: Math.ceil(number) });
-    if (number === 1) {
-      let finalDate = moment(this.state.payDay);
-      this.setState({ resultDate: finalDate });
-    } else {
-      let finalDate = moment(this.state.payDay)
-        .add(14 * (number - 1), "day")
-        .format("LLL");
-      this.setState({ resultDate: finalDate });
+    if (
+      this.state.purchaseCost &&
+      this.state.paymentAmount &&
+      this.state.payDayDate
+    ) {
+      let number = (
+        parseInt(this.state.purchaseCost.replace(/[^0-9.]/g, ""), 10) /
+        parseInt(this.state.paymentAmount.replace(/[^0-9.]/g, ""), 10)
+      ).toFixed(2);
+      this.setState({ resultPayments: Math.ceil(number) });
+      if (number === 1) {
+        let finalDate = moment(this.state.payDayDate);
+        this.setState({ resultDate: finalDate });
+      } else {
+        let finalDate = moment(this.state.payDayDate)
+          .add(14 * (number - 1), "day")
+          .format("LLL");
+        this.setState({ resultDate: finalDate });
+      }
+    } else if (this.state.payDayDate === null) {
+      this.setState({ payDayFocused: true });
+    } else if (this.state.paymentAmount === "") {
+      this.paymentAmountRef.current.focusTextInput();
+    } else if (this.state.purchaseCost === "") {
+      document.getElementById("purchase-cost").focus();
     }
   }
 
   render() {
-    const payDayDate =
-      moment(this.state.payDay).format("MMM Do YY") === "Invalid date"
-        ? this.state.payDay
-        : moment(this.state.payDay).format("MMM Do YY");
-
-    // const payOffDate =
-    //   moment(this.state.payOffDay).format("MMM Do YY") === "Invalid date"
-    //     ? this.state.payOffDay
-    //     : moment(this.state.payOffDay).format("MMM Do YY");
-
     const resultDate =
       moment(this.state.resultDate).format("MMM Do YY") === "Invalid date"
         ? this.state.resultDate
@@ -87,12 +90,11 @@ class Home extends Component {
         <div className="app-body">
           <div>
             <h2>Paycheck Date</h2>
-            <h3>{payDayDate}</h3>
             <SingleDatePicker
               id="date_input"
-              date={date}
+              date={this.state.payDayDate}
               focused={this.state.payDayFocused}
-              onDateChange={date => this.setState({ payDay: date })}
+              onDateChange={date => this.setState({ payDayDate: date })}
               onFocusChange={() =>
                 this.setState({ payDayFocused: !this.state.payDayFocused })
               }
@@ -105,7 +107,6 @@ class Home extends Component {
           </div>
           <div>
             <h2>Purchase Cost</h2>
-            <h3>${JSON.stringify(this.state.purchaseCost)}</h3>
             <form id="purchase-cost-form" onSubmit={this.handleCostSubmit}>
               {/*  HERE*/}
               <input
@@ -115,6 +116,7 @@ class Home extends Component {
                 onChange={this.handleChange}
               />
             </form>
+            <h3>${JSON.stringify(this.state.purchaseCost)}</h3>
             {/* <h2>Pay off by date</h2>
             <h3>{payOffDate}</h3>
             <SingleDatePicker
@@ -129,15 +131,16 @@ class Home extends Component {
           </div>
           <div>
             <h2>Per Check Payment</h2>
-            <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
             <form id="payment-amount-form" onSubmit={this.handlePaySubmit}>
               <input
+                ref={this.paymentAmountRef}
                 type="text"
                 id="payment-cost"
                 value={this.state.paymentAmount}
                 onChange={this.handlePayChange}
               />
             </form>
+            <h3>${JSON.stringify(this.state.paymentAmount)}</h3>
           </div>
         </div>
         <div className="result-div">
@@ -146,12 +149,9 @@ class Home extends Component {
           </button>
           {resultDate ? (
             <h3>
-              In {this.state.resultPayments} paycheck{this.state
-                .resultPayments > 1
-                ? "s"
-                : ""}{" "}
-              from now, on the day of {resultDate} you will be free of your
-              burden
+              In {this.state.resultPayments} paycheck
+              {this.state.resultPayments > 1 ? "s" : ""} from now, on the day of{" "}
+              {resultDate} you will be free of your burden
             </h3>
           ) : (
             ""
