@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { NavProvider, NavRoute, NavNotFoundBoundary } from "react-navi";
 import "./App.css";
-import Home from "./Components/home";
-import Savings from "./Components/savings";
 import Burger from "./Components/burger";
-import Future from "./Components/future";
 
 class App extends Component {
   componentDidMount() {}
@@ -13,16 +10,25 @@ class App extends Component {
   }
   render() {
     return (
-      <BrowserRouter>
+      <NavProvider navigation={this.props.navigation}>
         <div>
           <Burger />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/Savings" component={Savings} />
-          <Route exact path="/Future" component={Future} />
+          <main>
+            <NavNotFoundBoundary render={renderNotFound}>
+              <NavRoute />
+            </NavNotFoundBoundary>
+          </main>
         </div>
-      </BrowserRouter>
+      </NavProvider>
     );
   }
+}
+function renderNotFound() {
+  return (
+    <div className="App-error">
+      <h1>404 - Not Found</h1>
+    </div>
+  );
 }
 
 export default App;
